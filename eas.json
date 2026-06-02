@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 16.0.0"
+    "version": ">= 3.0.0"
   },
   "build": {
     "preview": {
@@ -10,11 +10,8 @@
     },
     "production": {
       "android": {
-        "buildType": "aab"
+        "buildType": "app-bundle"
       }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
