@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,15 +19,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: ''        # ← cache o'chirildi
 
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+          packager-cache-key: ''   # ← cache o'chirildi
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build APK with EAS
+      - name: Build APK
         run: eas build --platform android --profile preview --non-interactive
